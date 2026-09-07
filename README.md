@@ -38,15 +38,21 @@
 </tr>
 <tr>
 <td width="180" align="center" valign="middle">
+  <a href="https://jucodex.com/register?aff=3JDW"><img src="https://github.com/user-attachments/assets/1980f1ef-d594-457d-b7e4-a0dbff467984" alt="JuCodex" width="150"></a>
+</td>
+<td valign="middle"><b><a href="https://jucodex.com/register?aff=3JDW">JuCodex</a></b>&nbsp;为企业级用户打造的高可用、低延迟、极致性价比的中转站，提供 Codex、Claude Code、Grok 等主流大模型中转服务，新用户注册送 3 元（QQ 邮箱），永久承诺 0 水 0 替、模型 100% 保真。<a href="https://image.jucodex.com">生图工作台</a></td>
+</tr>
+<tr>
+<td width="180" align="center" valign="middle">
   <a href="https://api.muteki.site/register?aff=CookSleep&promo=CookSleep"><img src="https://github.com/user-attachments/assets/0247d44d-d76b-458b-b8f5-9714ec46e7de" alt="MaruCode" width="150"></a>
 </td>
 <td valign="middle"><b><a href="https://api.muteki.site/register?aff=CookSleep&promo=CookSleep">MaruCode</a></b>&nbsp;是一家偶尔做做慈善的小破站 API，自营号池，主要提供 Codex、Claude Code、GPT Image 等主流模型，支持 Websocket 协议，明码标价(Codex 0.25x, CC 1.5x)，透明汇率(1:1)，<a href="https://api.muteki.site/register?aff=CookSleep&promo=CookSleep">新用户注册送 2 刀</a>。<a href="https://images-2.muteki.site">生图工作台🖼️</a></td>
 </tr>
 <tr>
 <td width="180" align="center" valign="middle">
-  <a href="https://jucodex.com/register?aff=3JDW"><img src="https://github.com/user-attachments/assets/1980f1ef-d594-457d-b7e4-a0dbff467984" alt="JuCodex" width="150"></a>
+  <a href="https://go.apimart.ai/gh-gpt_image_playground"><img src="https://github.com/user-attachments/assets/d38e62e8-55be-4b3b-84cd-b7812c35a228" alt="APIMart" width="150"></a>
 </td>
-<td valign="middle"><b><a href="https://jucodex.com/register?aff=3JDW">JuCodex</a></b>&nbsp;为企业级用户打造的高可用、低延迟、极致性价比的中转站，提供 Codex、Claude Code、Grok 等主流大模型中转服务，新用户注册送 3 元（QQ 邮箱），永久承诺 0 水 0 替、模型 100% 保真。<a href="https://image.jucodex.com">生图工作台</a></td>
+<td valign="middle"><b><a href="https://go.apimart.ai/gh-gpt_image_playground">APIMart</a></b>&nbsp;是专注 AI 图片/视频生成的低价 API 平台，GPT-Image-2 低至 $0.006/张，1 美元可出图 160+ 张。图片、视频一套异步 API 通吃，提交任务拿 ID、回调取结果，跑批万张不超时、换模型不改代码。按量付费、无月费，通过<a href="https://go.apimart.ai/gh-gpt_image_playground">此注册链接</a>注册即可开用。</td>
 </tr>
 <tr>
 <td width="180" align="center" valign="middle">
@@ -62,21 +68,9 @@
 </tr>
 <tr>
 <td width="180" align="center" valign="middle">
-  <a href="https://hezu.ink/sign-up?aff=jCQK"><img src="https://github.com/user-attachments/assets/ffef7d1d-8dfc-4549-8263-8334aaf104d3" alt="合租巴士" width="150"></a>
-</td>
-<td valign="middle"><b><a href="https://hezu.ink/sign-up?aff=jCQK">合租巴士</a></b>&nbsp;是一家可靠高效 AI 中转服务平台，主要提供 Claude Code、Codex 等主流模型的高稳定中转能力，充值比例透明（1:1），Codex 倍率补贴低至 0.15。<a href="https://hezu.ink/sign-up?aff=jCQK">进群送 3 刀体验金</a></td>
-</tr>
-<tr>
-<td width="180" align="center" valign="middle">
   <a href="https://api.sublyx.org/register?aff=U62PAZERCHEA"><img src="https://github.com/user-attachments/assets/828b0b12-f07d-4408-a6d7-627056b81b76" alt="Sublyx" width="150"></a>
 </td>
 <td valign="middle"><b><a href="https://api.sublyx.org/register?aff=U62PAZERCHEA">Sublyx</a></b>&nbsp;是一家稳定高效的 AI API 聚合网关，支持 OpenAI、Claude、Grok、Codex、gpt-image-2 等主流模型，兼容 OpenAI SDK、Claude Code、Codex、Cherry Studio 等常用工具。通过<a href="https://api.sublyx.org/register?aff=U62PAZERCHEA">链接注册</a>并使用优惠码 <code>IMG2</code>，可额外领取 10 刀额度。<a href="https://img2.icedit.ai">生图工作台</a></td>
-</tr>
-<tr>
-<td width="180" align="center" valign="middle">
-  <a href="https://buzzai.cc/register?aff=gptimageplayground"><img src="https://github.com/user-attachments/assets/55da4c87-2d2c-4ae6-8577-18aded9bd762" alt="BuzzAI" width="150"></a>
-</td>
-<td valign="middle"><b><a href="https://buzzai.cc/register?aff=gptimageplayground">BuzzAI</a></b>&nbsp;默认不保存聊天记录，不替换用户选择的模型。所有调用链路均自主建设与维护——不让你的数据流经任何我们无法负责的环节，也不让你的请求在你看不见的地方被一次次转发。</td>
 </tr>
 </table>
 
@@ -224,7 +218,7 @@
 VITE_DEFAULT_API_URL=https://api.openai.com/v1
 ```
 
-**部署**
+**初始部署**
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FCookSleep%2Fgpt_image_playground&project-name=gpt-image-playground&repository-name=gpt-image-playground)
 
@@ -232,21 +226,23 @@ VITE_DEFAULT_API_URL=https://api.openai.com/v1
 
 **绑定自定义域名 (国内直连)**：Vercel 默认分配的 `.vercel.app` 域名在国内通常无法直接访问。如果你希望在国内直连访问，请在 Vercel 项目的 **Settings → Domains** 中绑定你自己的域名。
 
-**配置自动更新**：
+**更新方式**
 
-本项目已在 `vercel.json` 中关闭了默认的自动部署。若你 Fork 了本仓库，并希望在同步本仓库的新版本后自动更新 Vercel 部署：
+本项目已在 `vercel.json` 中关闭了默认的自动部署。若你 Fork 了本仓库，建议配置 Deploy Hook 以实现新版本自动构建：
 
-1. 在 Vercel 项目设置 **Settings -> Git** 的 **Deploy Hooks** 中创建一个名为 `Release` 的 Hook（Branch 填 `main`）并复制生成的 URL。
-2. 在你 Fork 的 GitHub 仓库设置 **Settings -> Secrets and variables -> Actions** 中，新建 Secret `VERCEL_DEPLOY_HOOK`，填入刚才的 URL。
+1. 在 Vercel 项目的 **Settings → Git → Deploy Hooks** 中创建一个名为 `Release` 的 Hook（Branch 填 `main`）并复制生成的 URL。
+2. 在你 Fork 的 GitHub 仓库 **Settings → Secrets and variables → Actions** 中，新建 Secret `VERCEL_DEPLOY_HOOK`，填入刚才的 URL。
 
-此后，只有在本仓库发布了正式版本（即包含新 Release / 版本号变动）时，在你的 Fork 页面点击 **Sync fork** 才会自动触发 Vercel 构建部署；日常的普通代码提交不会触发部署。
+配置完成后：
+- **自动更新**：只有在本仓库发布了正式版本（即包含新 Release / 版本号变动）时，在你的 Fork 页面点击 **Sync fork** 才会自动触发 Vercel 构建部署；日常的普通代码提交不会触发部署。
+- **手动触发**：若需立即部署最新代码（包括未发布正式版本的日常提交），可进入仓库顶部的 **Actions** 标签页，在左侧选择 **Deploy to Vercel**，点击右侧的 **Run workflow** 下拉按钮（分支选择 `main`），点击绿色的 **Run workflow** 按钮即可手动部署。
 
 </details>
 
 <details>
 <summary><strong>🌐 方式二：GitHub Pages 部署</strong></summary>
 
-支持通过 GitHub Actions 工作流将静态页面一键发布至 GitHub Pages。
+支持通过 GitHub Actions 工作流将静态页面发布至 GitHub Pages。
 
 **预置配置**
 
@@ -256,11 +252,15 @@ VITE_DEFAULT_API_URL=https://api.openai.com/v1
 VITE_DEFAULT_API_URL=https://api.openai.com/v1
 ```
 
-**部署**
+**初始部署**
 
 1. 在 GitHub 仓库的 **Settings → Pages** 中，将 **Build and deployment → Source** 设置为 **GitHub Actions**。
-2. 进入仓库顶部的 **Actions** 标签页，在左侧工作流列表中选择 **Deploy to GitHub Pages**。
-3. 点击右侧的 **Run workflow** 下拉按钮，分支选择 `main`，然后点击绿色的 **Run workflow** 按钮开始构建部署。
+2. 进入仓库顶部的 **Actions** 标签页，在左侧选择 **Deploy to GitHub Pages**，点击右侧的 **Run workflow** 下拉按钮（分支选择 `main`），点击绿色的 **Run workflow** 按钮完成首次构建部署。
+
+**更新方式**
+
+- **自动更新**：只有在本仓库发布了正式版本（即包含新 Release / 版本号变动）时，在你的 Fork 页面点击 **Sync fork** 才会自动触发构建并部署至 GitHub Pages；日常的普通代码提交不会触发部署。
+- **手动触发**：若需立即部署最新代码（包括未发布正式版本的日常提交），可进入仓库顶部的 **Actions** 标签页，在左侧选择 **Deploy to GitHub Pages**，点击右侧的 **Run workflow** 下拉按钮（分支选择 `main`），点击绿色的 **Run workflow** 按钮即可手动部署。
 
 </details>
 
