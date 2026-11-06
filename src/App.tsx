@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { invoke } from '@tauri-apps/api/core'
+import type { SkillInfo } from './types'
 import { initStore, useStore } from './store'
 import { clearUrlSettingParams, hasUrlSettingParams } from './lib/urlSettings'
 import { createDefaultOpenAIProfile, hasDefaultPresetConfig, isAgentTextApiProfile, normalizeSettings } from './lib/apiProfiles'
@@ -6,10 +8,12 @@ import { getCustomProviderConfigUrl, hasEmbeddedDefaultConfig, loadCustomProvide
 import { getDefaultPresetProfileId, getPresetProfileIds, isPresetConfigOnlyEnabled, setPresetConfig } from './lib/presetConfig'
 import { useDockerApiUrlMigrationNotice } from './hooks/useDockerApiUrlMigrationNotice'
 import { useAppFonts } from './hooks/useAppFonts'
+import { useColorMode } from './hooks/useColorMode'
 import { useCloseConfirm } from './hooks/useCloseConfirm'
 import { promptImportLink, useImportLinks } from './hooks/useImportLinks'
 import { useAutoUpdateCheck } from './hooks/useReleaseUpdates'
 import { useSaveLocationPrompt } from './hooks/useSaveLocationPrompt'
+import { usePrivacyModeShortcut } from './hooks/usePrivacyMode'
 import Header from './components/Header'
 import SearchBar from './components/SearchBar'
 import TaskGrid from './components/TaskGrid'
@@ -25,14 +29,18 @@ import Toast from './components/Toast'
 import DbBlockedNotice from './components/DbBlockedNotice'
 import MaskEditorModal from './components/MaskEditorModal'
 import SketchBoardModal from './components/SketchBoardModal'
+import TitleBar from './components/TitleBar'
 import ImageContextMenu from './components/ImageContextMenu'
 import SupportPromptModal from './components/SupportPromptModal'
 import AnnouncementModal from './components/AnnouncementModal'
+import { preloadMarkdownRenderer } from './components/MarkdownRenderer'
+import { SKILL_LABEL } from './components/settings/SkillSettingsSection'
 import { FavoriteCollectionPickerModal, FavoriteCollectionsView, ManageCollectionsModal } from './components/FavoriteCollections'
 import { showStartupNotices, type NoticeSection } from './components/startupNotice'
 import { useGlobalClickSuppression } from './lib/clickSuppression'
 import { takeDataDirNotice } from './lib/dbTauri'
-import { isTauri } from './lib/platform'
+import { installCliBridge } from './lib/cliBridge'
+import { isTauri, TITLEBAR_HEIGHT } from './lib/platform'
 import { setSaveToDefaultDir } from './lib/saveFile'
 import { setTauriLogEnabled } from './lib/tauriLog'
 import { getTauriStorageLoadError } from './lib/tauriStorage'
@@ -46,15 +54,57 @@ export default function App() {
   const writeLogFile = useStore((s) => s.settings.writeLogFile)
   const saveLocationMode = useStore((s) => s.settings.saveLocationMode)
   const autoCheckUpdate = useStore((s) => s.settings.autoCheckUpdate)
+  const privacyModeEpoch = useStore((s) => s.privacyModeEpoch)
+  const settingsModalEpoch = useStore((s) => s.settingsModalEpoch)
   const [startupImportDone, setStartupImportDone] = useState(false)
   useDockerApiUrlMigrationNotice()
   useAppFonts()
+  useColorMode()
   useGlobalClickSuppression()
   useCloseConfirm()
   useSaveLocationPrompt()
   useAutoUpdateCheck(autoCheckUpdate)
+  usePrivacyModeShortcut()
   // 运行中的链接导入要等启动时的预置配置写入完，否则会被启动流程覆盖
   useImportLinks(startupImportDone)
+
+  useEffect(() => {
+    if (isTauri) return installCliBridge()
+  }, [])
+
+  useEffect(() => {
+    if (!isTauri) return
+    // 安装的 Skill 是复制过去的，不会随客户端升级；启动时把内容已过时的更新为当前版本，未安装的不处理
+    void invoke<SkillInfo>('skill_info')
+      .then(async (info) => {
+        const outdated = info.skills.filter((s) => s.state === 'outdated')
+        if (!outdated.length) return
+        // 各处分别更新，一处失败不影响另一处；失败时原有的 Skill 保持不变
+        const failed: string[] = []
+        for (const s of outdated) {
+          try {
+            await invoke('skill_install', { target: s.id })
+          } catch (err) {
+            console.warn(`自动更新 ${SKILL_LABEL[s.id]} 的 Skill 失败：`, err)
+            failed.push(SKILL_LABEL[s.id])
+          }
+        }
+        useStore.getState().showToast(
+          failed.length ? `Skill 自动更新失败（${failed.join('、')}），可在「设置 → Skill」中手动更新` : 'Skill 已更新到当前版本',
+          failed.length ? 'error' : 'success',
+        )
+      })
+      .catch((err) => console.warn('读取 Skill 的安装状态失败：', err))
+  }, [])
+
+  useEffect(() => {
+    if (!('requestIdleCallback' in window)) {
+      const timer = setTimeout(preloadMarkdownRenderer, 1_000)
+      return () => clearTimeout(timer)
+    }
+    const id = window.requestIdleCallback(preloadMarkdownRenderer, { timeout: 3_000 })
+    return () => window.cancelIdleCallback(id)
+  }, [])
 
   useEffect(() => {
     if (!isTauri) return
@@ -78,7 +128,7 @@ export default function App() {
             : err.message.includes('不可写')
               ? custom
                 ? '请在「设置 → 数据管理」中把数据目录改到有写权限的位置。'
-                : '可能装在了需要管理员权限的位置，比如 C:\\Program Files。可以重新安装到其他位置，或在 设置 → 数据管理 中更改数据目录。'
+                : '可能装在了需要管理员权限的位置，比如 C:\\Program Files。可以重新安装到其他位置，或在「设置 → 数据管理」中更改数据目录。'
               : err.message.includes('高于当前客户端')
                 ? '数据目录由更新版本的客户端创建，请升级到最新版本的客户端后再打开。'
                 : '数据库可能被其他程序占用或已损坏，关闭相关程序后重启再尝试。'
@@ -194,23 +244,26 @@ export default function App() {
     return () => document.removeEventListener('dragstart', preventPageImageDrag)
   }, [])
 
+  // 进入隐私模式时重新挂载带有内部弹窗或菜单的组件，直接丢弃其中未保存的内容
   return (
     <>
-      <Header />
-      {appMode === 'agent' ? (
-        <AgentWorkspace />
-      ) : (
-        <main data-home-main data-drag-select-surface className="pb-48">
-          <div className="safe-area-x max-w-7xl mx-auto">
-            <SearchBar />
-            {filterFavorite && !activeFavoriteCollectionId ? <FavoriteCollectionsView /> : <TaskGrid />}
-          </div>
-        </main>
-      )}
-      <InputBar />
-      <DetailModal />
-      <Lightbox />
-      <SettingsModal />
+      <div data-page-scroll>
+        <Header />
+        {appMode === 'agent' ? (
+          <AgentWorkspace />
+        ) : (
+          <main data-home-main data-drag-select-surface className="pb-48">
+            <div className="safe-area-x max-w-7xl mx-auto">
+              <SearchBar />
+              {filterFavorite && !activeFavoriteCollectionId ? <FavoriteCollectionsView /> : <TaskGrid />}
+            </div>
+          </main>
+        )}
+      </div>
+      <InputBar key={`input-${privacyModeEpoch}`} />
+      <DetailModal key={`detail-${privacyModeEpoch}`} />
+      <Lightbox key={`lightbox-${privacyModeEpoch}`} />
+      <SettingsModal key={`settings-${settingsModalEpoch}`} />
       <UpdateModal />
       <DataProgressDialog />
       <ConfirmDialog />
@@ -221,9 +274,10 @@ export default function App() {
       <ManageCollectionsModal />
       <Toast />
       <DbBlockedNotice />
-      <MaskEditorModal />
-      <SketchBoardModal />
-      <ImageContextMenu />
+      <MaskEditorModal key={`mask-${privacyModeEpoch}`} />
+      <SketchBoardModal key={`sketch-${privacyModeEpoch}`} />
+      <ImageContextMenu key={`menu-${privacyModeEpoch}`} />
+      {TITLEBAR_HEIGHT > 0 && <TitleBar />}
     </>
   )
 }
